@@ -3,7 +3,8 @@
     <h2>Vuex todo list</h2>
     <p>Simple Todo List with adding and filter by diff status.</p>
 
-    <input type="text" class="input-text" name="listItem" placeholder="input your plan..." />
+    <input type="text" class="input-text" name="listItem" 
+     v-model="newItem" v-on:keyup.enter="addNew" placeholder="input your plan..." />
     <div class="input-btn">Add</div>
     <br />
 
@@ -29,20 +30,8 @@ export default {
   props: {},
   data() {
     return {
-      todoList: [
-          {
-            content: "sing",
-            isFinished: false
-          },
-          {
-              content: "play",
-              isFinished: false
-          },
-          {
-              content: "eat",
-              isFinished: false
-          }
-      ],
+        newItem: '',
+      todoList: [],
       btnGroup: [
         {
           itemFilter: "all",
@@ -62,6 +51,13 @@ export default {
   methods: {
       finishHandle: function (item) {
           item.isFinished = !item.isFinished;
+      },
+      addNew: function () {
+          this.todoList.push({
+              content: this.newItem,
+              isFinished: false
+          })
+          this.newItem = ''
       }
   }
 };

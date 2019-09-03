@@ -11,7 +11,7 @@
       <li v-for="(item, index) in todoList" :key="index">
         <span>{{ index + 1 }}.</span>
         <input type="checkbox" name="done-todo" class="done-todo" />
-        <span>{{ item }}</span>
+        <span class="finished">{{ item }}</span>
       </li>
     </ol>
 
@@ -85,11 +85,14 @@ ol li{
     display: block;
     margin-bottom: 6px;
 }
+ol li .finished{
+    text-decoration: line-through;
+}
 ul {
   list-style-type: none;
   padding: 0;
 }
-li {
+ul li {
   display: inline-block;
   margin: 16px;
 }

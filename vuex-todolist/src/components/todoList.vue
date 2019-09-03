@@ -10,8 +10,8 @@
     <ol>
       <li v-for="(item, index) in todoList" :key="index">
         <span>{{ index + 1 }}.</span>
-        <input type="checkbox" name="done-todo" class="done-todo" />
-        <span class="finished">{{ item }}</span>
+        <input type="checkbox" name="done-todo" class="done-todo" @click="finishHandle(item)"/>
+        <span :class="{finished: item.isFinished}">{{ item.content }}</span>
       </li>
     </ol>
 
@@ -29,7 +29,20 @@ export default {
   props: {},
   data() {
     return {
-      todoList: ["sing", "play", "888888888888888"],
+      todoList: [
+          {
+            content: "sing",
+            isFinished: false
+          },
+          {
+              content: "play",
+              isFinished: false
+          },
+          {
+              content: "eat",
+              isFinished: false
+          }
+      ],
       btnGroup: [
         {
           itemFilter: "all",
@@ -45,6 +58,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+      finishHandle: function (item) {
+          item.isFinished = !item.isFinished;
+      }
   }
 };
 </script>
